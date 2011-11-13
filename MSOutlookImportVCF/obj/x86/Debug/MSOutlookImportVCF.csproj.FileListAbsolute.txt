@@ -1,0 +1,10 @@
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\bin\Debug\MSOutlookImportVCF.exe
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\bin\Debug\MSOutlookImportVCF.pdb
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\ResolveAssemblyReference.cache
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.F_Main.resources
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.Properties.Resources.resources
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\GenerateResource.read.1.tlog
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\GenerateResource.write.1.tlog
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.exe
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.pdb
+E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.csproj.ResolveComReference.cache
