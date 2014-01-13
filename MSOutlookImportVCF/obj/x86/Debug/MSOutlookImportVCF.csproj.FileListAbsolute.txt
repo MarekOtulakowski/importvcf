@@ -8,3 +8,11 @@ E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\GenerateResource
 E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.exe
 E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.pdb
 E:\PROJEKTY\MSOutlookImportVCF\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.csproj.ResolveComReference.cache
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\bin\Debug\MSOutlookImportVCF.exe
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\bin\Debug\MSOutlookImportVCF.pdb
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.csproj.ResolveComReference.cache
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.F_Main.resources
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.Properties.Resources.resources
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.csproj.GenerateResource.Cache
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.exe
+C:\projects\VS2010\importvcf\MSOutlookImportVCF\obj\x86\Debug\MSOutlookImportVCF.pdb

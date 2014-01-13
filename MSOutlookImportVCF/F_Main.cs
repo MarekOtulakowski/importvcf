@@ -21,7 +21,9 @@ namespace MSOutlookImportVCF
     {
         #region Zmienne
         string pathToVcfFolder = string.Empty;
+        string pathToLog = string.Empty;
         List<string> listPathsVcfFiles;
+        int countErrorCopy = 0;
         System.Windows.Forms.Timer timer;
         float percentProgress = 0;
         Thread theThread;
@@ -45,11 +47,13 @@ namespace MSOutlookImportVCF
             {
                 pathToVcfFolder = fbd.SelectedPath;
                 TB_path.Text = pathToVcfFolder;
+                pathToLog = pathToVcfFolder + @"\log.txt";
             }
         }
 
         private void B_import_Click(object sender, EventArgs e)
         {
+            L_advInfo.Text = ".";
             done = false;
             PB_progress.Value = 0;
             L_stat.Text = "No action";
@@ -115,7 +119,9 @@ namespace MSOutlookImportVCF
             {
                 L_stat.Text = "Imported " + 
                               listPathsVcfFiles.Count + 
-                              " contacts, operation is complete!";
+                              " contacts, operation is complete!" + "\n" +
+                              countErrorCopy + " failed copy";
+                L_advInfo.Text = "Details errors in file: " + pathToLog;
             }
         }
 
@@ -188,9 +194,24 @@ namespace MSOutlookImportVCF
                     i++;
                     percentProgress = (float)i / listPathsVcfFiles.Count * 100;
 
-                    contact = oApp.Session.OpenSharedItem(oneContact) as Outlook.ContactItem;
-                    contact.Save();
-                    contact = null;
+                    try
+                    {
+                        contact = oApp.Session.OpenSharedItem(oneContact) as Outlook.ContactItem;
+                        contact.Save();
+                        contact = null;
+                    }
+                    catch
+                    {
+                        contact = null;
+                        countErrorCopy++;
+                        using (StreamWriter sw = File.AppendText(pathToLog))
+                        {
+                            sw.WriteLine(String.Format("{0}. Error imported file, path={1}",
+                                countErrorCopy ,oneContact));
+                            sw.Close();
+                        }
+                        continue;
+                    }
                 }
 
                 done = true;

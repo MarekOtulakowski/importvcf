@@ -35,6 +35,7 @@
             this.B_import = new System.Windows.Forms.Button();
             this.B_Abort = new System.Windows.Forms.Button();
             this.L_stat = new System.Windows.Forms.Label();
+            this.L_advInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // B_browse
@@ -99,11 +100,21 @@
             this.L_stat.TabIndex = 6;
             this.L_stat.Text = "No action";
             // 
+            // L_advInfo
+            // 
+            this.L_advInfo.AutoSize = true;
+            this.L_advInfo.Location = new System.Drawing.Point(12, 143);
+            this.L_advInfo.Name = "L_advInfo";
+            this.L_advInfo.Size = new System.Drawing.Size(10, 13);
+            this.L_advInfo.TabIndex = 7;
+            this.L_advInfo.Text = ".";
+            // 
             // F_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 144);
+            this.ClientSize = new System.Drawing.Size(292, 169);
+            this.Controls.Add(this.L_advInfo);
             this.Controls.Add(this.L_stat);
             this.Controls.Add(this.B_Abort);
             this.Controls.Add(this.B_import);
@@ -127,6 +138,7 @@
         private System.Windows.Forms.Button B_import;
         private System.Windows.Forms.Button B_Abort;
         private System.Windows.Forms.Label L_stat;
+        private System.Windows.Forms.Label L_advInfo;
     }
 }
 
