@@ -12,14 +12,15 @@ using Microsoft.Office;
 using Microsoft.Office.Core;
 using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
-using System.Threading; 
+using System.Threading;
+using System.Reflection; 
 #endregion
 
 namespace MSOutlookImportVCF
 {
     public partial class F_Main : Form
     {
-        #region Zmienne
+        #region Variables
         string pathToVcfFolder = string.Empty;
         string pathToLog = string.Empty;
         List<string> listPathsVcfFiles;
@@ -60,13 +61,9 @@ namespace MSOutlookImportVCF
 
             //initial list
             if (listPathsVcfFiles == null)
-            {
                 listPathsVcfFiles = new List<string>();
-            }
             else
-            {
                 listPathsVcfFiles.Clear();
-            }
 
             //initial timer
             if (timer == null)
@@ -91,6 +88,12 @@ namespace MSOutlookImportVCF
                                     "Error",
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Error);
+                }
+
+                if (listPathsVcfFiles.Count == 0)
+                {
+                    L_stat.Text = "Any file *.vcf not found";
+                    return;
                 }
 
                 L_stat.Text = "Found " + 
@@ -131,17 +134,11 @@ namespace MSOutlookImportVCF
             FileInfo[] directoryFiles = rootFolder.GetFiles("*.vcf");
 
             foreach (FileInfo file in directoryFiles)
-            {
                 listPathsVcfFiles.Add(file.FullName.ToLower());
-            }
 
             if (rootFolder.GetDirectories().Length > 0)
-            {
                 foreach (DirectoryInfo directory in rootFolder.GetDirectories())
-                {
                     Get_filesFromSubfolders(directory);
-                }
-            }
         }
 
         private void Get_filesFromSubfolders(DirectoryInfo _rootFolder)
@@ -149,35 +146,37 @@ namespace MSOutlookImportVCF
             FileInfo[] plikiFolderu = _rootFolder.GetFiles("*.vcf");
 
             foreach (FileInfo file in plikiFolderu)
-            {
                 listPathsVcfFiles.Add(file.FullName.ToLower());
-            }
 
             if (_rootFolder.GetDirectories().Length > 0)
-            {
                 foreach (DirectoryInfo directory in _rootFolder.GetDirectories())
-                {
-                    Get_filesFromSubfolders(directory);
-                }
-            }
+                     Get_filesFromSubfolders(directory);
         }
 
         private void B_abort_Click(object sender, EventArgs e)
         {
-            if (theThread.IsAlive)
-            {
-                timer.Stop();
-                theThread.Abort();
-                MessageBox.Show("Abort for user wishes!",
-                                "Information",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                L_stat.Text = "Abort for user wishes";
-            }
+            if (theThread != null)
+                if (theThread.IsAlive)
+                {
+                    timer.Stop();
+                    theThread.Abort();
+                    MessageBox.Show("Abort for user wishes!",
+                                    "Information",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
+                    L_stat.Text = "Abort for user wishes";
+                }
+        }
+
+        private void F_Main_Load(object sender, EventArgs e)
+        {
+            Version version = Assembly.GetEntryAssembly().GetName().Version;
+            this.Text = this.Text + version.ToString();
         }
         #endregion
 
         #region OutlookFunction
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
         private void ImportContactsToMSOutlook()
         {
             try
