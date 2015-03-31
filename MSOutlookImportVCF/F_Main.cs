@@ -13,7 +13,8 @@ using Microsoft.Office.Core;
 using System.Runtime.InteropServices;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using System.Threading;
-using System.Reflection; 
+using System.Reflection;
+using System.Diagnostics; 
 #endregion
 
 namespace MSOutlookImportVCF
@@ -181,7 +182,7 @@ namespace MSOutlookImportVCF
         {
             try
             {
-                Outlook.Application oApp = new Outlook.Application();
+                Outlook.Application oApp = InitializeOutlook();
                 Outlook.NameSpace oNS = oApp.GetNamespace("MAPI");
 
                 Outlook.MAPIFolder oContactsFolder = oNS.GetDefaultFolder(Outlook.OlDefaultFolders.olFolderContacts) as Outlook.MAPIFolder;
@@ -222,6 +223,32 @@ namespace MSOutlookImportVCF
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
+        }
+
+        private static Outlook.Application InitializeOutlook()
+        {
+            Outlook.Application oApp = null;
+            try
+            {
+                if (Process.GetProcessesByName("OUTLOOK").Count() > 0)
+                {
+                    // If so, use the GetActiveObject method to obtain the process and cast it to an Application object.
+                    oApp = Marshal.GetActiveObject("Outlook.Application") as Outlook.Application;
+                }
+                else
+                {
+                    oApp = new Outlook.Application();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error connect to MS Outlook\n\nError description:\n\n" + ex.Message,
+                "Error",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                Environment.Exit(-1);
+            }
+            return oApp;
         } 
         #endregion
     }
